@@ -6,6 +6,7 @@ import Model.entites.Department;
 import Model.entites.Seller;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Program {
     public static void main(String[] args){
@@ -16,6 +17,12 @@ public class Program {
         Seller seller = sellerDAO.findById(3);
         System.out.println(seller);
 
+        System.out.println("=== Teste 2 : findByDepartment ===");
+        Department department = new Department(2,null);
+        List<Seller> list = sellerDAO.findByDepartment(department);
 
+        for (Seller a : list){
+            System.out.println(a);
+        }
     }
 }
