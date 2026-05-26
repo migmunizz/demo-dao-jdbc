@@ -1,5 +1,7 @@
 package Model.entites;
 
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -7,7 +9,7 @@ public class Seller {
     private Integer id;
     private String name;
     private String email;
-    private LocalDate birthDate;
+    private Timestamp birthDate;
     private double baseSalary;
 
     private Department department;
@@ -15,7 +17,7 @@ public class Seller {
     public Seller() {
     }
 
-    public Seller(Integer id, String email, String name, LocalDate birthDate, double baseSalary, Department department) {
+    public Seller(Integer id, String email, String name, Timestamp birthDate, double baseSalary, Department department) {
         this.id = id;
         this.email = email;
         this.name = name;
@@ -48,11 +50,11 @@ public class Seller {
         this.email = email;
     }
 
-    public LocalDate getBirthDate() {
+    public Timestamp getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
+    public void setBirthDate(Timestamp birthDate) {
         this.birthDate = birthDate;
     }
 
