@@ -6,10 +6,7 @@ import Model.entites.Seller;
 import db.DB;
 import db.DbException;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,7 +22,36 @@ public class SellerDaoJDBC implements SellerDAO {
 
     @Override
     public void insert(Seller obj) {
+        PreparedStatement st = null;
+        try {
+            st = conn.prepareStatement(
+                    "insert into seller "
+                        +"(Name,Email,BirthDate,BaseSalary,DepartmentId) "
+                        +"Values "
+                        +"(?, ?, ?, ?, ? )",
+                    Statement.RETURN_GENERATED_KEYS);
+            st.setString(1,obj.getName());
+            st.setString(2,obj.getEmail());
+            st.setTimestamp(3,obj.getBirthDate());
+            st.setDouble(4,obj.getBaseSalary());
+            st.setInt(5,obj.getDepartment().getId());
 
+            int rowsAffected = st.executeUpdate();
+
+                if (rowsAffected > 0){
+                ResultSet rs = st.getGeneratedKeys();
+                if (rs.next()){
+                    int id = rs.getInt(1);
+                    obj.setId(id);
+                }else {throw new DbException("Erro: nenhuma linha afetada"); }
+                DB.closeResultSet(rs);
+            }
+        }catch (SQLException e){
+            throw new DbException(e.getMessage());
+        }finally {
+            DB.closeStatement(st);
+
+        }
     }
 
     @Override

@@ -5,7 +5,9 @@ import Model.DaoFactory;
 import Model.entites.Department;
 import Model.entites.Seller;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class Program {
@@ -31,5 +33,9 @@ public class Program {
         for (Seller a : list){
             System.out.println(a);
         }
+        System.out.println("=== Teste 4 : insert ===");
+        Seller seller1 = new Seller(null,"roberto","robert@gmail.com", Timestamp.valueOf(LocalDateTime.now()),2000.0,department);
+        sellerDAO.insert(seller1);
+        System.out.println("Inserted new id = "+ seller1.getId());
     }
 }

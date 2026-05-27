@@ -17,7 +17,7 @@ public class Seller {
     public Seller() {
     }
 
-    public Seller(Integer id, String email, String name, Timestamp birthDate, double baseSalary, Department department) {
+    public Seller(Integer id, String name, String email, Timestamp birthDate, double baseSalary, Department department) {
         this.id = id;
         this.email = email;
         this.name = name;
