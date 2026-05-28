@@ -1,12 +1,11 @@
 package application;
 
 import Model.DAO.SellerDAO;
-import Model.DaoFactory;
+import Model.DaoSellerFactory;
 import Model.entites.Department;
 import Model.entites.Seller;
 
 import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -14,7 +13,7 @@ public class Program {
     public static void main(String[] args){
 
 
-        SellerDAO sellerDAO = DaoFactory.createSellerDao();
+        SellerDAO sellerDAO = DaoSellerFactory.createSellerDao();
         System.out.println("=== Teste 1 : findByID ===");
         Seller seller = sellerDAO.findById(3);
         System.out.println(seller);
